@@ -46,6 +46,9 @@ function RootLayoutNav() {
   return (
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="play" options={{ headerShown: false }} />
+        <Stack.Screen name="options" options={{ headerShown: false }} />
+        <Stack.Screen name="ranking" options={{ headerShown: false }} />
       </Stack>
   );
 }

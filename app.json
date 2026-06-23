@@ -3,7 +3,7 @@
     "name": "jogo-do-bixo",
     "slug": "jogo-do-bixo",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "landscape",
     "icon": "./assets/images/icon.png",
     "scheme": "jogodobixo",
     "userInterfaceStyle": "automatic",
