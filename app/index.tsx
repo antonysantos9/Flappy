@@ -1,11 +1,7 @@
 import { Link } from "expo-router";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View,} from "react-native";
+import MovingBackground from "@/components/MovingBackGround";
 
 export default function Home() {
   const bestScore = 0;
@@ -14,13 +10,21 @@ export default function Home() {
     <View style={styles.container}>
       <ImageBackground
         source={require("@/assets/images/fundo.png")}
-        resizeMode="stretch"
+        resizeMode="cover"
         style={styles.background}
       >
         <View style={styles.overlay}>
-          <Text style={styles.title}>
-            Flappy Bird
-          </Text>
+
+          <View style={styles.titleContainer}>
+            <Image
+              source={require("@/assets/images/bird.png")}
+              style={styles.birdImage}
+            />
+
+            <Text style={styles.title}>
+              Flappy Bird
+            </Text>
+          </View>
 
           <View style={styles.scoreBox}>
             <Text style={styles.score}>
@@ -29,27 +33,42 @@ export default function Home() {
           </View>
 
           <Link href="/play" asChild>
-            <TouchableOpacity style={styles.playButton}>
-              <Text style={styles.playButtonText}>
-                ▶ JOGAR
-              </Text>
+            <TouchableOpacity>
+              <LinearGradient
+                colors={["#FFD700", "#C49000"]}
+                style={styles.playButton}
+              >
+                <Text style={styles.playButtonText}>
+                  ▶ JOGAR
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
           </Link>
 
-          
           <View style={styles.buttonRow}>
             <Link href="/ranking" asChild>
               <TouchableOpacity style={styles.secondaryButton}>
-                <Text style={styles.secondaryButtonText}>
-                  🏅 RANKING
-                </Text>
+                <LinearGradient
+                  colors={["#26a100", "#51dd74"]}
+                  style={styles.secondaryButton}
+                >
+                  <Text style={styles.secondaryButtonText}>
+                    🏅 RANKING
+                  </Text>
+                </LinearGradient>
               </TouchableOpacity>
             </Link>
+
             <Link href="/options" asChild>
               <TouchableOpacity style={styles.secondaryButton}>
-                <Text style={styles.secondaryButtonText}>
-                  ⚙ OPÇÕES
-                </Text>
+                <LinearGradient
+                  colors={["#26a100", "#51dd74"]}
+                  style={styles.secondaryButton}
+                >
+                  <Text style={styles.secondaryButtonText}>
+                    ⚙ OPÇÕES
+                  </Text>
+                </LinearGradient>
               </TouchableOpacity>
             </Link>
           </View>
@@ -57,7 +76,9 @@ export default function Home() {
           <Text style={styles.footer}>
             Toque em JOGAR para começar
           </Text>
+
         </View>
+        <MovingBackground />
       </ImageBackground>
     </View>
   );
@@ -69,25 +90,36 @@ const styles = StyleSheet.create({
   },
 
   background: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    flex: 1,
+    width: "100%",
+    height: "100%",
   },
 
   overlay: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.15)",
+    backgroundColor: "rgba(0,0,0,0.1)",
+  },
+
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
+  },
+
+  birdImage: {
+    width: 80,
+    height: 80,
+    marginRight: 15,
+    transform: [{ rotate: "-15deg" }],
   },
 
   title: {
     fontSize: 60,
     fontWeight: "bold",
     color: "#FFD700",
-    marginBottom: 20,
 
     textShadowColor: "#000",
     textShadowOffset: {
@@ -114,7 +146,6 @@ const styles = StyleSheet.create({
   playButton: {
     width: 250,
     height: 75,
-    backgroundColor: "#FFD700",
 
     justifyContent: "center",
     alignItems: "center",
