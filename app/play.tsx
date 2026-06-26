@@ -1,9 +1,53 @@
-import { View, Text } from "react-native";
+import MovingBackGround from "@/components/MovingBackGround";
+import Pipe from "@/components/Pipe";
+import { useAudioPlayer } from "expo-audio";
+import { Image, ImageBackground, Pressable, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Play() {
-    return (
-        <View>
-            <Text>Play</Text>
-        </View>
-    );
+  const jumpSound = useAudioPlayer(require("@/assets/audios/wing.mp3"));
+
+  function handleJump() {
+    jumpSound.seekTo(0);
+    jumpSound.play();
+  }
+
+  return (
+    <ImageBackground
+      source={require("@/assets/images/fundo.png")}
+      resizeMode="cover"
+      style={styles.background}
+    >
+      <Pressable onPress={handleJump} style={styles.background}>
+        <SafeAreaView style={styles.screen}>
+          <Image
+            source={require("@/assets/images/RQERYZ9.gif")}
+            style={styles.bird}
+          />
+          <Pipe gapY={195}/>
+        </SafeAreaView>
+      </Pressable>
+
+      <MovingBackGround />
+    </ImageBackground>
+  );
 }
+
+const styles = StyleSheet.create({
+  background: {
+    width: "100%",
+    height: "100%",
+  },
+  screen: {
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+  },
+  bird: {
+    width: 70,
+    height: 48,
+    position: "absolute",
+    top: "50%",
+    left: 100,
+  },
+});

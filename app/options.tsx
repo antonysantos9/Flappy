@@ -1,5 +1,4 @@
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { red } from "react-native-reanimated/lib/typescript/Colors";
 
 
 
@@ -62,9 +61,18 @@ const styles = StyleSheet.create({
         gap: 20,
     },
     text: {
-        fontSize: 24,
-        fontWeight: "bold",
+    fontSize: 60,
+    fontWeight: "bold",
+    color: "#ffffff",
+
+    textShadowColor: "#000",
+    textShadowOffset: {
+      width: 4,
+      height: 4,
     },
+    textShadowRadius: 3,
+  },
+
 
     buttonText: {
         fontSize: 18,
