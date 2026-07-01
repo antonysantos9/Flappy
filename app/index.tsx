@@ -2,6 +2,7 @@ import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View,} from "react-native";
 import MovingBackground from "@/components/MovingBackGround";
+import BackgroundSound from "@/components/BackgroundSound";
 
 export default function Home() {
   const bestScore = 0;
@@ -13,6 +14,8 @@ export default function Home() {
         resizeMode="cover"
         style={styles.background}
       >
+
+        <BackgroundSound source={require("@/assets/audios/background.mp3")} loop />
         <View style={styles.overlay}>
 
           <View style={styles.titleContainer}>
@@ -118,8 +121,8 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 60,
-    fontWeight: "bold",
     color: "#FFD700",
+    fontFamily: "Arial",
 
     textShadowColor: "#000",
     textShadowOffset: {

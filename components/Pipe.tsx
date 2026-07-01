@@ -1,7 +1,7 @@
 import { DURATION } from "@/constants/animation";
 import { CAP_HEIGHT, GAP_SIZE, PIPE_WIDTH } from "@/constants/pipe";
 import { useEffect } from "react";
-import { Dimensions, StyleSheet} from "react-native";
+import { Dimensions, Image, StyleSheet} from "react-native";
 import Animated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 interface Props {
@@ -34,10 +34,38 @@ export default function Pipe({gapY, onEnd}: Props) {
 
     return (
     <>
-        <Animated.View style={[styles.pipe, {left: width, top: 0, height: topHeight, }, animatedStyle, ]} />
-        <Animated.View style={[styles.cap, {left: width - 5, top: topHeight - CAP_HEIGHT}, animatedStyle, ]}/>
-        <Animated.View style={[styles.pipe, {left: width, top: bottomY, height: bottomHeight}, animatedStyle, ]}/>
-        <Animated.View style={[styles.cap, {left: width - 5, top: bottomY}, animatedStyle, ]}/>
+        <Animated.View style={[styles.pipe, {left: width, top: 0, height: topHeight, }, animatedStyle, ]}>
+            <Image
+                source={require("@/assets/images/pipe.webp")}
+                 style={[styles.image, { transform: [{ rotate: "180deg" }] }]}
+                resizeMode="stretch"
+            />
+        </Animated.View>
+
+        <Animated.View style={[styles.cap, {left: width - 5, top: topHeight - CAP_HEIGHT}, animatedStyle, ]}>
+            <Image
+                source={require("@/assets/images/cap.webp")}
+                style={[styles.image, { transform: [{ rotate: "180deg" }] }]}
+                resizeMode="stretch"
+            />
+
+        </Animated.View>
+
+        <Animated.View style={[styles.pipe, {left: width, top: bottomY, height: bottomHeight}, animatedStyle, ]}>
+         <Image
+                source={require("@/assets/images/pipe.webp")}
+                style={styles.image }
+                resizeMode="stretch"
+            />
+        </Animated.View>
+
+        <Animated.View style={[styles.cap, {left: width - 5, top: bottomY}, animatedStyle, ]}>
+         <Image
+                source={require("@/assets/images/cap.webp")}
+                style={styles.image }
+                resizeMode="stretch"
+            />
+        </Animated.View>
     </>
     );
 }
@@ -47,18 +75,15 @@ const styles = StyleSheet.create({
         position: "absolute",
         width: PIPE_WIDTH,
         height: 300,
-        backgroundColor: "green",
-        borderLeftWidth: 4,
-        borderRightWidth: 4,
-        borderColor: "darkgreen",
     },
 
     cap: {
         position: "absolute",
         width:  PIPE_WIDTH + 10,
         height: CAP_HEIGHT,
-        backgroundColor: "green",
-        borderWidth: 4,
-        borderColor: "darkgreen",
+    },
+    image: {
+        width: "100%",
+        height: "100%",
     }
 })
